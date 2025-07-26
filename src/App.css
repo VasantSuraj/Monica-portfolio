@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap');
+
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  background-color: black;
+}
+
+.home {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.about-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 4;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  padding: 20px;
+  color: white;
+  text-align: center;
+}
+
+.about-heading {
+  font-size: 2.7rem;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.about-square {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 30px;
+  max-width: 750px;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #eee;
+  font-family: 'Poppins', sans-serif;
+}
+
+.highlight {
+  color: #ffd700;
+  font-weight: 600;
+}
+
+.about-square .line {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.reveal .line {
+  animation: printLine 0.8s ease-out forwards;
+}
+
+@keyframes printLine {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.monika-signature {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.5rem;
+  color: #ffd700;
+  margin-top: 40px;
+  opacity: 0;
+  transition: opacity 2s ease 5s;
+  text-align: center;
+}
+
+.reveal .fade-in {
+  opacity: 1;
+}
+
+.about-square .highlight a {
+  color: #ffd700;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  animation: floatText 3s ease-in-out infinite;
+  transition: color 0.3s ease;
+}
+
+.about-square .highlight a:hover {
+  color: #ffee75;
+}
+
+@keyframes floatText {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.phone-icon {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 9999;
+  transition: transform 0.2s ease;
+}
+
+.phone-icon:hover {
+  transform: scale(1.2);
+}
+
+.no-scroll {
+  overflow: hidden !important;
+  position: fixed !important;
+  width: 100vw;
+  height: 100vh;
+  touch-action: none;
+}
+
+.scroll-down-arrow {
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.5rem;
+  color: white;
+  z-index: 5;
+  animation: bounceArrow 1.8s infinite ease-in-out;
+  opacity: 0.7;
+  user-select: none;
+  pointer-events: none;
+}
+
+@keyframes bounceArrow {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(10px);
+  }
+}
+
+/* ✅ RESPONSIVENESS */
+@media (max-width: 768px) {
+  .about-heading {
+    font-size: 2rem;
+  }
+
+  .about-square {
+    padding: 20px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    width: 90%;
+  }
+
+  .monika-signature {
+    font-size: 1.8rem;
+  }
+
+  .scroll-down-arrow svg {
+    width: 20px;
+    height: 30px;
+  }
+
+  .phone-icon {
+    font-size: 1.6rem;
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-heading {
+    font-size: 1.6rem;
+  }
+
+  .about-square {
+    padding: 16px;
+    font-size: 0.85rem;
+    border-radius: 14px;
+  }
+
+  .monika-signature {
+    font-size: 1.5rem;
+  }
+}

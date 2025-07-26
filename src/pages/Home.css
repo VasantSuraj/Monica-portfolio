@@ -1,0 +1,105 @@
+/* Reset and base styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Home wrapper */
+.home {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Centered MONIKA / CEO */
+.center-text {
+  font-size: 5rem;
+  font-weight: bold;
+  color: white;
+  position: relative;
+  z-index: 10;
+  cursor: default;
+}
+
+.monica-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-text-stroke: 2px white;
+  color: transparent;
+  animation: drawStroke 3s forwards;
+  pointer-events: auto;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.ceo-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  color: white;
+}
+
+/* Hover effect after animation */
+.center-text:hover .monika-text {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.center-text:hover .ceo-text {
+  opacity: 1;
+}
+
+/* Stroke animation for MONIKA */
+@keyframes drawStroke {
+  0% {
+    color: transparent;
+    stroke-dasharray: 0 100%;
+  }
+  100% {
+    color: white;
+    stroke-dasharray: 100% 0;
+  }
+}
+
+/* === Vertical Navigation Styles === */
+.vertical-nav {
+  position: fixed;
+  top: 50%;
+  left: 2rem;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 5;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+  animation-delay: 4s;
+}
+
+.vertical-nav a {
+  color: gray !important;
+  text-decoration: none !important;
+  font-size: 1.5rem !important;
+  transition: color 0.3s ease !important;
+}
+
+.vertical-nav a:hover {
+  color: #00ffff !important; /* Bright cyan on hover */
+}
+
+/* Animation for nav appearing */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}

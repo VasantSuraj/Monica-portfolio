@@ -1,0 +1,62 @@
+.stars-wrapper {
+  position: fixed; /* Use fixed instead of absolute */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Static twinkling stars */
+.stars::before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  box-shadow:
+    20vw 10vh #fff,
+    50vw 20vh #cfcfcf,
+    80vw 30vh #ddd,
+    10vw 40vh #aaa,
+    70vw 50vh #fff,
+    30vw 60vh #bbb,
+    60vw 70vh #999,
+    40vw 80vh #eee;
+  animation: twinkle 4s infinite alternate;
+}
+
+@keyframes twinkle {
+  from {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.4);
+  }
+}
+
+/* Shooting stars */
+.shooting-star {
+  position: absolute;
+  width: 2px;
+  height: 100px;
+  background: linear-gradient(45deg, white, transparent);
+  opacity: 0.8;
+  transform: rotate(45deg);
+  animation: shoot 6s linear infinite;
+}
+
+@keyframes shoot {
+  0% {
+    transform: translate(0, 0) rotate(45deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(120vw, 120vh) rotate(45deg);
+    opacity: 0;
+  }
+}

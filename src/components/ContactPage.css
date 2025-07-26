@@ -1,0 +1,183 @@
+/* src/components/ContactPage.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+.contact-page {
+  font-family: 'Poppins', sans-serif;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.contact-box {
+  background: rgba(20, 20, 20, 0.8); /* ⬆️ Darker and more opaque */
+  backdrop-filter: blur(30px) saturate(160%) contrast(110%);
+  -webkit-backdrop-filter: blur(30px) saturate(160%) contrast(110%);
+  border-radius: 20px;
+  padding: 40px 30px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  text-align: center;
+  position: relative;
+}
+
+
+.close-button {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.close-button:hover {
+  transform: scale(1.2);
+}
+
+.contact-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 25px;
+  letter-spacing: 0.5px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  font-family: 'Poppins', sans-serif;
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+  background: transparent;
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-bottom: 2px solid white;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.button-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.contact-form button {
+  padding: 12px 20px;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  color: white;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  letter-spacing: 0.5px;
+  box-shadow: none; /* ✅ remove glow if any */
+}
+
+.contact-form button:hover {
+  background-color: white;       /* ✅ white background */
+  color: black;                  /* ✅ black text */
+  transform: scale(1.03);
+  box-shadow: none;              /* ✅ no glow */
+}
+
+/* 🚀 Rocket launch animation */
+.rocket-launch {
+  position: fixed;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: rocketFlyUp 3s ease-in forwards;
+  pointer-events: none;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.rocket {
+  font-size: 2rem;
+  transform: rotate(-45deg); /* ✅ tilt slightly left to straighten */
+}
+
+/* Animation path */
+@keyframes rocketFlyUp {
+  0% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) translateY(-150vh);
+    opacity: 1;
+  }
+}
+
+/* 🔥 Flame below rocket */
+.flame {
+  width: 8px;
+  height: 20px;
+  background: radial-gradient(circle, orange 20%, red 60%, transparent 100%);
+  border-radius: 50%;
+  animation: flame-flicker 0.3s infinite alternate;
+  transform: translateY(5px);
+}
+
+@keyframes flame-flicker {
+  0% {
+    transform: scaleY(1) scaleX(1) translateY(5px);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scaleY(1.4) scaleX(0.8) translateY(7px);
+    opacity: 0.3;
+  }
+}
+.message-sent-text {
+  margin-top: 20px;
+  color: #00ff88;
+  font-size: 1.1rem;
+  text-align: center;
+  animation: fadeInPop 0.6s ease forwards;
+  font-family: 'Poppins', sans-serif;
+}
+
+@keyframes fadeInPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
