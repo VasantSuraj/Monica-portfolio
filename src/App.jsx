@@ -12,7 +12,47 @@ export default function App() {
   const [showContact, setShowContact] = useState(false);
   const prevZoom = useRef(1);
 
-  // Handle scroll transition to About
+  // 🌐 Universal scroll (desktop + mobile)
+  useEffect(() => {
+    const handleWheel = (event) => {
+      setZoomLevel((prev) => {
+        const newZoom = prev + event.deltaY * 0.0015;
+        return Math.min(Math.max(newZoom, 1), 6);
+      });
+    };
+
+    let lastTouchY = null;
+
+    const handleTouchMove = (event) => {
+      if (event.touches.length === 1) {
+        const touchY = event.touches[0].clientY;
+        if (lastTouchY !== null) {
+          const deltaY = lastTouchY - touchY;
+          setZoomLevel((prev) => {
+            const newZoom = prev + deltaY * 0.015;
+            return Math.min(Math.max(newZoom, 1), 6);
+          });
+        }
+        lastTouchY = touchY;
+      }
+    };
+
+    const resetTouch = () => {
+      lastTouchY = null;
+    };
+
+    window.addEventListener('wheel', handleWheel);
+    window.addEventListener('touchmove', handleTouchMove);
+    window.addEventListener('touchend', resetTouch);
+
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchend', resetTouch);
+    };
+  }, []);
+
+  // Handle About reveal
   useEffect(() => {
     if (
       zoomLevel >= 2.5 &&
@@ -33,7 +73,7 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // ✅ Lock scroll when contact page is open
+  // Lock scroll when contact page is open
   useEffect(() => {
     const html = document.querySelector('html');
     const body = document.body;
@@ -66,22 +106,17 @@ export default function App() {
 
   return (
     <>
-      {/* Background Elements */}
       <StarryBackground />
       <Moon zoomLevel={zoomLevel} />
-
-      {/* Sidebar always visible */}
       <SocialSidebar onPhoneClick={() => setShowContact(true)} />
 
-      {/* Main Content */}
       <div className="home">
         <AnimatedName
-  zoomLevel={zoomLevel}
-  setZoomLevel={setZoomLevel}
-  isScrollLocked={showContact}
-/>
+          zoomLevel={zoomLevel}
+          setZoomLevel={setZoomLevel}
+          isScrollLocked={showContact}
+        />
 
-        {/* Scroll Down Arrow */}
         {zoomLevel < 2.5 && (
           <div className="scroll-down-arrow">
             <svg
@@ -100,7 +135,6 @@ export default function App() {
           </div>
         )}
 
-        {/* About Section */}
         <div
           className="about-section"
           style={{
@@ -147,7 +181,6 @@ export default function App() {
               Welcome to my world — and thank you for being part of the journey.
             </p>
 
-            {/* Signature */}
             <div className={`monika-signature ${hasScrolledDown ? 'fade-in' : ''}`}>
               ~Monika R Prasath
             </div>
@@ -155,7 +188,6 @@ export default function App() {
         </div>
       </div>
 
-      {/* Contact Page Overlay */}
       {showContact && <ContactPage onClose={() => setShowContact(false)} />}
     </>
   );
