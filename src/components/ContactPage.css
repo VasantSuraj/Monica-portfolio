@@ -24,14 +24,13 @@
   max-width: 500px;
   width: 80%;
   margin: 0 auto;
-  transform: translateX(-17px);  /* ✅ same shift for contact */
+  transform: translateX(-17px);
   box-shadow: 0 8px 32px rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: white;
   text-align: center;
   position: relative;
 }
-
 
 .close-button {
   position: absolute;

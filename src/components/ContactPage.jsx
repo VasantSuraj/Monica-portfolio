@@ -1,4 +1,3 @@
-// src/components/ContactPage.jsx
 import React, { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import './ContactPage.css';
@@ -56,7 +55,7 @@ export default function ContactPage({ onClose }) {
           <textarea name="message" placeholder="Your Message" rows="5" required />
 
           <div className="button-wrapper">
-            <button type="submit">Cast the Message Spell 🪄</button>
+            <button type="submit">Send love 💌</button>
 
             {showRocket && (
               <div className="rocket-launch">
@@ -68,7 +67,7 @@ export default function ContactPage({ onClose }) {
         </form>
 
         {sentSuccess && (
-          <div className="message-sent-text">🎉 Message spell casted successfully!</div>
+          <div className="message-sent-text">Got your love 💕</div>
         )}
       </div>
     </div>

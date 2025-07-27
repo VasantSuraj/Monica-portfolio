@@ -42,27 +42,28 @@ body, html {
 .about-heading {
   font-size: 2.7rem;
   font-family: 'Poppins', sans-serif;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   color: white;
+ 
 }
-
 .about-square {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(12px);
   border-radius: 20px;
-  padding: 30px 20px;
-  max-width: 750px;
-  width: 90%;
-  margin: 0 auto;
-  transform: translateX(-15px); /* shift left */
+  padding: 24px 18px;
+  max-width: 660px;
+  width: 92%;
+  margin: -30px auto 0 auto; /* ⬅️ this moves it upward */
+  transform: translateX(-10px);
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
-  font-size: 1.1rem;
-  line-height: 1.8;
+  font-size: 1.05rem;
+  line-height: 1.7;
   color: #eee;
   font-family: 'Poppins', sans-serif;
   box-sizing: border-box;
 }
+
 
 .highlight {
   color: #ffd700;
@@ -85,7 +86,7 @@ body, html {
   }
 }
 
-.monika-signature {
+.vasant-signature {
   font-family: 'Great Vibes', cursive;
   font-size: 2.5rem;
   color: #ffd700;
@@ -174,7 +175,7 @@ body, html {
     line-height: 1.6;
   }
 
-  .monika-signature {
+  .vasant-signature {
     font-size: 1.8rem;
   }
 
@@ -201,7 +202,7 @@ body, html {
     border-radius: 14px;
   }
 
-  .monika-signature {
+  .vasant-signature {
     font-size: 1.5rem;
   }
 }

@@ -132,46 +132,27 @@ export default function App() {
             pointerEvents: zoomLevel >= 2.5 ? 'auto' : 'none',
           }}
         >
-          <h2 className="about-heading">Meet Monica</h2>
+          <h2 className="about-heading">Meet Vasant Suraj</h2>
 
           <div className={`about-square ${hasScrolledDown ? 'reveal' : ''}`}>
             <p className="line" style={{ animationDelay: '0.2s' }}>
-              Hi, I’m Monica — CEO of{' '}
-              <span className="highlight">
-                <a
-                  href="https://surakshaamadhavan.github.io/i-lish/demo/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  i-lish Edu School
-                </a>
-              </span>{' '}
-              and{' '}
-              <span className="highlight">
-                <a
-                  href="https://mainproject-red.vercel.app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Wolfpack Startup
-                </a>
-              </span>.
+              Dear World,
             </p>
             <p className="line" style={{ animationDelay: '1.2s' }}>
-              I’ve always believed that education and innovation go hand in hand.
+              I'm <span className="highlight">Vasant Suraj S V</span>, a software developer who sees code not just as logic, but as poetry written in syntax.
             </p>
             <p className="line" style={{ animationDelay: '2.2s' }}>
-              That’s why I started i-lish Edu — to empower students with skills that truly matter.
+              I fell in love with creation — not with brush and canvas, but with functions and frameworks. Every project I build is a letter to the future, a promise of purpose and elegance.
             </p>
             <p className="line" style={{ animationDelay: '3.2s' }}>
-              At Wolfpack, we build bold, digital-first solutions for curious minds.
+              From stargazing interfaces to grounded backend logic, I chase beauty in balance — speed, precision, clarity.
             </p>
             <p className="line" style={{ animationDelay: '4.2s' }}>
-              Welcome to my world — and thank you for being part of the journey.
+              If you're reading this, thank you. You're now part of this story — and the next chapter is waiting to be written.
             </p>
 
-            <div className={`monika-signature ${hasScrolledDown ? 'fade-in' : ''}`}>
-              ~Monika R Prasath
+            <div className={`vasant-signature ${hasScrolledDown ? 'fade-in' : ''}`}>
+              ~Vasant Suraj S V
             </div>
           </div>
         </div>

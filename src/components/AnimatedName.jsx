@@ -3,7 +3,7 @@ import './AnimatedName.css';
 
 export default function AnimatedName({ zoomLevel, setZoomLevel, isScrollLocked }) {
   const [isFilled, setIsFilled] = useState(false);
-  const monikaRef = useRef(null);
+  const nameRef = useRef(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsFilled(true), 2200);
@@ -20,9 +20,9 @@ export default function AnimatedName({ zoomLevel, setZoomLevel, isScrollLocked }
       newZoom = Math.min(Math.max(newZoom, 1), 5);
       setZoomLevel(newZoom);
 
-      if (monikaRef.current) {
-        monikaRef.current.style.transform = `translate(-50%, -50%) scale(${newZoom})`;
-        monikaRef.current.style.opacity = newZoom >= 2.5 ? 0 : 1;
+      if (nameRef.current) {
+        nameRef.current.style.transform = `translate(-50%, -50%) scale(${newZoom})`;
+        nameRef.current.style.opacity = newZoom >= 2.5 ? 0 : 1;
       }
     };
 
@@ -34,16 +34,16 @@ export default function AnimatedName({ zoomLevel, setZoomLevel, isScrollLocked }
     <div className="animated-name">
       <div className="name-wrapper">
         {zoomLevel < 2.5 && (
-          <div className="monika-container" ref={monikaRef}>
-            <svg className="monika-svg" viewBox="0 0 1500 300">
+          <div className="vasantsuraj-container" ref={nameRef}>
+            <svg className="vasantsuraj-svg" viewBox="0 0 1500 300">
               <text
                 x="50%"
                 y="50%"
                 textAnchor="middle"
                 dominantBaseline="middle"
-                className={`monika-text ${isFilled ? 'filled' : ''}`}
+                className={`vasantsuraj-text ${isFilled ? 'filled' : ''}`}
               >
-                MONICA
+                VASANT SURAJ
               </text>
             </svg>
           </div>
