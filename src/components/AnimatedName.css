@@ -37,7 +37,7 @@
 
 .vasantsuraj-text {
   font-family: 'Anton', sans-serif;
-  font-size: 580px; /* reduced size */
+  font-size: 580px;
   fill: none;
   stroke: white;
   stroke-width: 9px;
@@ -88,15 +88,25 @@
   transform: translate(-50%, -50%) scale(1);
 }
 
-/* ✅ RESPONSIVE FONT SIZE */
+/* ✅ RESPONSIVE FONT & POSITIONING FIXES */
 @media (max-width: 768px) {
   .vasantsuraj-text {
-    font-size: 360px;
+    font-size: 420px;
+  }
+
+  .vasantsuraj-container {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.1); /* increase scale for mobile */
   }
 }
 
 @media (max-width: 480px) {
   .vasantsuraj-text {
-    font-size: 280px;
+    font-size: 320px;
+  }
+
+  .vasantsuraj-container {
+    transform: translate(-50%, -50%) scale(1.3);
   }
 }

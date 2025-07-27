@@ -1,8 +1,8 @@
 /* src/components/SocialSidebar.css */
 .social-sidebar {
-  position: fixed;       /* Stay fixed on screen */
-  bottom: 20px;          /* Hug the bottom */
-  left: 20px;            /* Hug the left */
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -21,7 +21,7 @@
 /* Vertical line */
 .sidebar-line {
   width: 2px;
-  height: 200px; /* 🔥 Covers all icons + buffer */
+  height: 200px;
   background-color: white;
   margin-right: 14px;
 }
@@ -30,10 +30,10 @@
 .social-icons {
   display: flex;
   flex-direction: column;
-  gap: 14px; /* 🔥 Reduced spacing between icons */
+  gap: 14px;
 }
 
-/* Icon styles */
+/* Icon styles (Desktop) */
 .social-icons a {
   color: white;
   font-size: 1.6rem;
@@ -41,6 +41,7 @@
   transform: translateX(-20px);
   opacity: 0;
   animation: slideIn 0.6s ease forwards;
+  animation-fill-mode: forwards;
 }
 
 .social-icons a:nth-child(1) { animation-delay: 2.2s; }
@@ -58,4 +59,48 @@
 .social-icons a:hover {
   transform: scale(1.2);
   transition: transform 0.3s ease;
+}
+
+/* ✅ MOBILE FIX: reposition SocialSidebar for small screens */
+@media (max-width: 768px) {
+  .social-sidebar {
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .sidebar-line {
+    height: 2px;
+    width: 120px;
+    margin: 0;
+    background-color: white;
+  }
+
+  .social-icons {
+    flex-direction: row;
+    gap: 18px;
+  }
+
+  .social-icons a {
+    font-size: 1.8rem;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: slideInMobile 0.6s ease forwards;
+    animation-fill-mode: forwards;
+  }
+
+  .social-icons a:nth-child(1) { animation-delay: 2.2s; }
+  .social-icons a:nth-child(2) { animation-delay: 2.4s; }
+  .social-icons a:nth-child(3) { animation-delay: 2.6s; }
+  .social-icons a:nth-child(4) { animation-delay: 2.8s; }
+
+  @keyframes slideInMobile {
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
 }

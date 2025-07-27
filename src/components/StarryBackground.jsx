@@ -1,46 +1,46 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 export default function StarryBackground() {
+  const canvasRef = useRef(null);
+  const starsRef = useRef([]);
+  const shootingStarsRef = useRef([]);
+
   useEffect(() => {
-    const canvas = document.getElementById('stars-canvas');
+    const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
 
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+    function generateStars(width, height) {
+      const totalStars = 150;
+      const glowingStarsCount = 25;
+
+      return Array.from({ length: totalStars }).map((_, index) => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: Math.random() * 1.5 + 0.8,
+        baseAlpha: Math.random() * 0.3 + 0.6,  // glow from 0.6 to 0.9
+        glow: index < glowingStarsCount,
+        alphaDirection: Math.random() < 0.5 ? 1 : -1,
+        sparkle: false,
+        sparkleTime: 0,
+      }));
     }
 
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    function resizeCanvas() {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+      starsRef.current = generateStars(width, height);
+    }
 
-    const width = canvas.width;
-    const height = canvas.height;
-
-    // ⭐ Static stars
-    const totalStars = 150;
-    const glowingStarsCount = 25;
-
-    const stars = Array.from({ length: totalStars }).map((_, index) => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      radius: Math.random() * 1.5 + 0.8,
-      baseAlpha: Math.random() * 0.5 + 0.5,
-      glow: index < glowingStarsCount,
-      alphaDirection: Math.random() < 0.5 ? 1 : -1,
-      sparkle: false,
-      sparkleTime: 0
-    }));
-
-    const shootingStars = [];
-
-    function spawnShootingStar() {
-      if (shootingStars.length < 3 && Math.random() < 0.01) {
-        shootingStars.push({
+    function spawnShootingStar(width, height) {
+      if (shootingStarsRef.current.length < 2 && Math.random() < 0.01) {
+        shootingStarsRef.current.push({
           x: Math.random() * width * 0.3,
           y: Math.random() * height * 0.3,
-          length: 250 + Math.random() * 50, // 🎯 Smaller trail
-          speed: 6,                         // 🎯 Slower speed
+          length: 180 + Math.random() * 40,
+          speed: 3.2,
           angle: Math.PI / 4,
           alpha: 1,
         });
@@ -48,18 +48,18 @@ export default function StarryBackground() {
     }
 
     function draw() {
+      const width = canvas.width;
+      const height = canvas.height;
       ctx.clearRect(0, 0, width, height);
 
-      // ⭐ Draw static stars
-      stars.forEach(star => {
+      starsRef.current.forEach(star => {
         if (star.glow) {
-          star.baseAlpha += star.alphaDirection * 0.01;
-          if (star.baseAlpha > 1 || star.baseAlpha < 0.5) {
+          star.baseAlpha += star.alphaDirection * 0.004;
+          if (star.baseAlpha > 0.9 || star.baseAlpha < 0.6) {
             star.alphaDirection *= -1;
           }
         }
 
-        // Sparkle effect on click
         if (star.sparkle) {
           star.sparkleTime += 1;
           if (star.sparkleTime > 10) {
@@ -68,9 +68,7 @@ export default function StarryBackground() {
           }
         }
 
-        const alpha = star.sparkle
-          ? 1
-          : (star.glow ? star.baseAlpha : 0.6);
+        const alpha = star.sparkle ? 1 : (star.glow ? star.baseAlpha : 0.6);
 
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.radius, 0, 2 * Math.PI);
@@ -78,15 +76,14 @@ export default function StarryBackground() {
         ctx.fill();
       });
 
-      // ☄️ Draw shooting stars
-      for (let i = shootingStars.length - 1; i >= 0; i--) {
-        const s = shootingStars[i];
+      for (let i = shootingStarsRef.current.length - 1; i >= 0; i--) {
+        const s = shootingStarsRef.current[i];
         s.x += Math.cos(s.angle) * s.speed;
         s.y += Math.sin(s.angle) * s.speed;
-        s.alpha -= 0.003;
+        s.alpha -= 0.002;
 
         if (s.alpha <= 0) {
-          shootingStars.splice(i, 1);
+          shootingStarsRef.current.splice(i, 1);
           continue;
         }
 
@@ -101,37 +98,41 @@ export default function StarryBackground() {
         ctx.stroke();
       }
 
-      spawnShootingStar();
+      spawnShootingStar(width, height);
       requestAnimationFrame(draw);
     }
 
-    // ✨ Click interaction
+    resizeCanvas();
+    draw();
+
+    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('orientationchange', resizeCanvas);
+
     canvas.addEventListener('click', (e) => {
       const rect = canvas.getBoundingClientRect();
       const mouseX = e.clientX - rect.left;
       const mouseY = e.clientY - rect.top;
 
-      stars.forEach(star => {
+      starsRef.current.forEach(star => {
         const dx = mouseX - star.x;
         const dy = mouseY - star.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < star.radius + 5) {
           star.sparkle = true;
           star.sparkleTime = 0;
-          console.log("✨ Sparkle at:", Math.round(star.x), Math.round(star.y));
         }
       });
     });
 
-    draw();
-
     return () => {
       window.removeEventListener('resize', resizeCanvas);
+      window.removeEventListener('orientationchange', resizeCanvas);
     };
   }, []);
 
   return (
     <canvas
+      ref={canvasRef}
       id="stars-canvas"
       style={{
         position: 'fixed',

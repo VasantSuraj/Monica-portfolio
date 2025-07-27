@@ -44,8 +44,9 @@ body, html {
   font-family: 'Poppins', sans-serif;
   margin-bottom: 40px;
   color: white;
- 
+  text-align: center;
 }
+
 .about-square {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -54,7 +55,7 @@ body, html {
   padding: 24px 18px;
   max-width: 660px;
   width: 92%;
-  margin: -30px auto 0 auto; /* ⬅️ this moves it upward */
+  margin: -30px auto 0 auto;
   transform: translateX(-10px);
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
   font-size: 1.05rem;
@@ -63,7 +64,6 @@ body, html {
   font-family: 'Poppins', sans-serif;
   box-sizing: border-box;
 }
-
 
 .highlight {
   color: #ffd700;
@@ -163,20 +163,27 @@ body, html {
   }
 }
 
-/* ✅ RESPONSIVENESS */
+/* ✅ MOBILE RESPONSIVE STYLING */
 @media (max-width: 768px) {
   .about-heading {
     font-size: 2rem;
+    margin-bottom: 14px;
+    text-align: center;
   }
 
   .about-square {
-    padding: 20px;
-    font-size: 0.95rem;
+    width: 85%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 16px;
+    font-size: 0.9rem;
     line-height: 1.6;
+    transform: translateX(-18px); /* ✅ perfect center */
   }
 
   .vasant-signature {
     font-size: 1.8rem;
+    margin-top: 30px;
   }
 
   .scroll-down-arrow svg {
@@ -194,12 +201,17 @@ body, html {
 @media (max-width: 480px) {
   .about-heading {
     font-size: 1.6rem;
+    margin-bottom: 10px;
   }
 
   .about-square {
-    padding: 16px;
-    font-size: 0.85rem;
+    width: 92%;
+    max-width: 420px;
+    padding: 14px;
+    font-size: 0.82rem;
+    line-height: 1.5;
     border-radius: 14px;
+    margin-bottom: 40px;
   }
 
   .vasant-signature {
