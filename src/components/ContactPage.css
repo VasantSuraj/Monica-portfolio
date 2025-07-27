@@ -1,4 +1,3 @@
-/* src/components/ContactPage.css */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
 .contact-page {
@@ -17,13 +16,15 @@
 }
 
 .contact-box {
-  background: rgba(20, 20, 20, 0.8); /* ⬆️ Darker and more opaque */
+  background: rgba(20, 20, 20, 0.8);
   backdrop-filter: blur(30px) saturate(160%) contrast(110%);
   -webkit-backdrop-filter: blur(30px) saturate(160%) contrast(110%);
   border-radius: 20px;
   padding: 40px 30px;
   max-width: 500px;
-  width: 100%;
+  width: 80%;
+  margin: 0 auto;
+  transform: translateX(-17px);  /* ✅ same shift for contact */
   box-shadow: 0 8px 32px rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: white;
@@ -100,17 +101,16 @@
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
   letter-spacing: 0.5px;
-  box-shadow: none; /* ✅ remove glow if any */
+  box-shadow: none;
 }
 
 .contact-form button:hover {
-  background-color: white;       /* ✅ white background */
-  color: black;                  /* ✅ black text */
+  background-color: white;
+  color: black;
   transform: scale(1.03);
-  box-shadow: none;              /* ✅ no glow */
+  box-shadow: none;
 }
 
-/* 🚀 Rocket launch animation */
 .rocket-launch {
   position: fixed;
   bottom: 60px;
@@ -127,10 +127,9 @@
 
 .rocket {
   font-size: 2rem;
-  transform: rotate(-45deg); /* ✅ tilt slightly left to straighten */
+  transform: rotate(-45deg);
 }
 
-/* Animation path */
 @keyframes rocketFlyUp {
   0% {
     transform: translateX(-50%) translateY(0);
@@ -142,7 +141,6 @@
   }
 }
 
-/* 🔥 Flame below rocket */
 .flame {
   width: 8px;
   height: 20px;
@@ -162,6 +160,7 @@
     opacity: 0.3;
   }
 }
+
 .message-sent-text {
   margin-top: 20px;
   color: #00ff88;

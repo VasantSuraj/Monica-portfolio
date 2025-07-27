@@ -5,18 +5,15 @@ export default function AnimatedName({ zoomLevel, setZoomLevel, isScrollLocked }
   const [isFilled, setIsFilled] = useState(false);
   const monikaRef = useRef(null);
 
-  // Animate stroke + fill after load
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsFilled(true);
-    }, 2200);
+    const timer = setTimeout(() => setIsFilled(true), 2200);
     return () => clearTimeout(timer);
   }, []);
 
-  // Scroll-controlled zoom (only when not locked)
   useEffect(() => {
+    if (!isFilled || isScrollLocked) return;
+
     const handleWheel = (e) => {
-      if (!isFilled || isScrollLocked) return;
       e.preventDefault();
       const direction = e.deltaY < 0 ? 1 : -1;
       let newZoom = zoomLevel + direction * 0.1;

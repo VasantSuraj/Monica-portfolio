@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap');
 
+body.scroll-lock {
+  overflow: hidden !important;
+  position: fixed !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  touch-action: none !important;
+  overscroll-behavior: none !important;
+}
+
 body, html {
   margin: 0;
   padding: 0;
@@ -42,13 +51,17 @@ body, html {
   border: 1px solid rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(12px);
   border-radius: 20px;
-  padding: 30px;
+  padding: 30px 20px;
   max-width: 750px;
+  width: 90%;
+  margin: 0 auto;
+  transform: translateX(-15px); /* shift left */
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
   font-size: 1.1rem;
   line-height: 1.8;
   color: #eee;
   font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
 }
 
 .highlight {
@@ -159,7 +172,6 @@ body, html {
     padding: 20px;
     font-size: 0.95rem;
     line-height: 1.6;
-    width: 90%;
   }
 
   .monika-signature {

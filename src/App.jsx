@@ -12,9 +12,10 @@ export default function App() {
   const [showContact, setShowContact] = useState(false);
   const prevZoom = useRef(1);
 
-  // 🌐 Universal scroll (desktop + mobile)
+  // ✅ Desktop + mobile scroll handling
   useEffect(() => {
     const handleWheel = (event) => {
+      if (showContact) return;
       setZoomLevel((prev) => {
         const newZoom = prev + event.deltaY * 0.0015;
         return Math.min(Math.max(newZoom, 1), 6);
@@ -23,36 +24,44 @@ export default function App() {
 
     let lastTouchY = null;
 
-    const handleTouchMove = (event) => {
-      if (event.touches.length === 1) {
-        const touchY = event.touches[0].clientY;
-        if (lastTouchY !== null) {
-          const deltaY = lastTouchY - touchY;
-          setZoomLevel((prev) => {
-            const newZoom = prev + deltaY * 0.015;
-            return Math.min(Math.max(newZoom, 1), 6);
-          });
-        }
-        lastTouchY = touchY;
+    const handleTouchStart = (e) => {
+      if (e.touches.length === 1) {
+        lastTouchY = e.touches[0].clientY;
       }
     };
 
-    const resetTouch = () => {
+    const handleTouchMove = (e) => {
+      if (showContact || lastTouchY === null) return;
+
+      const currentY = e.touches[0].clientY;
+      const deltaY = lastTouchY - currentY;
+
+      setZoomLevel((prev) => {
+        const newZoom = prev + deltaY * 0.015;
+        return Math.min(Math.max(newZoom, 1), 6);
+      });
+
+      lastTouchY = currentY;
+    };
+
+    const handleTouchEnd = () => {
       lastTouchY = null;
     };
 
-    window.addEventListener('wheel', handleWheel);
-    window.addEventListener('touchmove', handleTouchMove);
-    window.addEventListener('touchend', resetTouch);
+    window.addEventListener('wheel', handleWheel, { passive: true });
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
+    window.addEventListener('touchend', handleTouchEnd);
 
     return () => {
       window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchmove', handleTouchMove);
-      window.removeEventListener('touchend', resetTouch);
+      window.removeEventListener('touchend', handleTouchEnd);
     };
-  }, []);
+  }, [showContact]);
 
-  // Handle About reveal
+  // ✅ Trigger About section reveal
   useEffect(() => {
     if (
       zoomLevel >= 2.5 &&
@@ -64,7 +73,7 @@ export default function App() {
     prevZoom.current = zoomLevel;
   }, [zoomLevel]);
 
-  // Escape key closes contact page
+  // ✅ Escape key to close ContactPage
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') setShowContact(false);
@@ -73,35 +82,15 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // Lock scroll when contact page is open
+  // ✅ Scroll lock for ContactPage
   useEffect(() => {
-    const html = document.querySelector('html');
     const body = document.body;
-
     if (showContact) {
-      html.style.overflow = 'hidden';
-      body.style.overflow = 'hidden';
-      body.style.position = 'fixed';
-      body.style.width = '100vw';
-      body.style.height = '100vh';
-      body.style.touchAction = 'none';
+      body.classList.add('scroll-lock');
     } else {
-      html.style.overflow = '';
-      body.style.overflow = '';
-      body.style.position = '';
-      body.style.width = '';
-      body.style.height = '';
-      body.style.touchAction = '';
+      body.classList.remove('scroll-lock');
     }
-
-    return () => {
-      html.style.overflow = '';
-      body.style.overflow = '';
-      body.style.position = '';
-      body.style.width = '';
-      body.style.height = '';
-      body.style.touchAction = '';
-    };
+    return () => body.classList.remove('scroll-lock');
   }, [showContact]);
 
   return (
