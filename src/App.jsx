@@ -97,7 +97,13 @@ export default function App() {
     <>
       <StarryBackground />
       <Moon zoomLevel={zoomLevel} />
-      <SocialSidebar onPhoneClick={() => setShowContact(true)} />
+
+      {/* ✅ SocialSidebar now receives zoomLevel and showContact */}
+      <SocialSidebar
+        onPhoneClick={() => setShowContact(true)}
+        zoomLevel={zoomLevel}
+        showContact={showContact}
+      />
 
       <div className="home">
         <AnimatedName
