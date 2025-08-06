@@ -1,5 +1,4 @@
-/* src/components/Timeline.css */
-
+/* Timeline Container */
 .timeline-container {
   position: fixed;
   top: 0;
@@ -7,7 +6,7 @@
   width: 100vw;
   height: 100vh;
   overflow-y: auto;
-  overflow-x: hidden; /* ✅ Prevent horizontal scroll */
+  overflow-x: hidden;
   background: transparent;
   z-index: 5;
   font-family: 'Poppins', sans-serif;
@@ -40,30 +39,28 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 1;
-  transition: height 0.3s ease, top 0.3s ease;
 }
 
-/* Entry Container */
+/* Entries Wrapper */
 .timeline-entries {
   padding: 100px 30px 60px;
   position: relative;
   z-index: 2;
 }
 
-/* Each Entry */
+/* Timeline Entry */
 .timeline-entry {
   position: relative;
   width: 100%;
   max-width: 460px;
   margin: 40px 0;
-  animation: fadeInSlide 1s ease forwards;
   opacity: 0;
+  animation: fadeInSlide 1s ease forwards;
 }
 
-/* Left and Right Entry Styling */
 .timeline-entry.left {
   left: 0;
-  margin-left: 10%; /* ✅ Adjusted for symmetry */
+  margin-left: 10%;
   text-align: left;
 }
 
@@ -73,7 +70,7 @@
   text-align: left;
 }
 
-/* Icon Style */
+/* Entry Icon */
 .timeline-icon {
   font-size: 1.8rem;
   color: #ffd700;
@@ -81,7 +78,7 @@
   animation: popIn 0.6s ease forwards;
 }
 
-/* Card Styling */
+/* Entry Content */
 .timeline-content {
   background: rgba(255, 255, 255, 0.05);
   padding: 16px 20px;
@@ -108,29 +105,64 @@
 
 /* Animations */
 @keyframes fadeInSlide {
-  0% {
+  from {
     opacity: 0;
     transform: translateY(20px);
   }
-  100% {
+  to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
 @keyframes popIn {
-  0% {
+  from {
     opacity: 0;
     transform: scale(0.6);
   }
-  100% {
+  to {
     opacity: 1;
     transform: scale(1);
   }
 }
 
-/* ✅ Responsive: Mobile View */
+/* Timeline Label - Desktop */
+.timeline-label {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: rotate(-90deg) translateY(-50%);
+  transform-origin: right center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  color: white;
+  background: transparent;
+  cursor: pointer;
+  z-index: 999;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.6;
+  pointer-events: auto;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  white-space: nowrap;
+  line-height: 1;
+  backdrop-filter: none;
+}
+
+.timeline-label:hover {
+  opacity: 1;
+  color: #ffd700;
+}
+
+/* ✅ Mobile Fix */
 @media (max-width: 768px) {
+  .timeline-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   .timeline-entry.left,
   .timeline-entry.right {
     left: 0;
@@ -148,43 +180,15 @@
     font-size: 0.9rem;
   }
 
-  .timeline-container {
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-/* ✅ Timeline Label (Visible on both Desktop & Mobile) */
-.timeline-label {
-  position: fixed;
-  top: 50%;
-  right: 0;
-  transform: rotate(-90deg) translateY(-50%);
-  transform-origin: right center;
-  font-family: 'Poppins', sans-serif;
-  font-size: 1rem;
-  color: white;
-  background: transparent;
-  padding: 8px 12px;
-  cursor: pointer;
-  z-index: 999;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  transition: opacity 0.3s ease;
-  opacity: 0.6;
-}
-
-.timeline-label:hover {
-  opacity: 1;
-  color: #ffd700;
-}
-
-/* ✅ Mobile Adjustment */
-@media (max-width: 768px) {
   .timeline-label {
+    top: 30px;
     right: 20px;
-    bottom: 20px;
-    top: auto;
-    transform: rotate(-20deg);
-    font-size: 0.9rem;
+    transform: rotate(0deg);
+    font-size: 0.85rem;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    border: none;
+    backdrop-filter: none;
   }
 }

@@ -33,7 +33,6 @@ export default function App() {
 
     const handleTouchMove = (e) => {
       if (showContact || showTimeline || lastTouchY === null) return;
-
       const currentY = e.touches[0].clientY;
       const deltaY = lastTouchY - currentY;
 
@@ -63,11 +62,7 @@ export default function App() {
   }, [showContact, showTimeline]);
 
   useEffect(() => {
-    if (
-      zoomLevel >= 2.5 &&
-      !hasScrolledDown &&
-      zoomLevel > prevZoom.current
-    ) {
+    if (zoomLevel >= 2.5 && !hasScrolledDown && zoomLevel > prevZoom.current) {
       setHasScrolledDown(true);
     }
     prevZoom.current = zoomLevel;
@@ -100,21 +95,16 @@ export default function App() {
       <Moon zoomLevel={zoomLevel} />
 
       {!showContact && !showTimeline && (
-        <SocialSidebar
-          onPhoneClick={() => setShowContact(true)}
-          zoomLevel={zoomLevel}
-          showContact={showContact}
-          showTimeline={showTimeline}
-        />
+        <SocialSidebar onPhoneClick={() => setShowContact(true)} zoomLevel={zoomLevel} showContact={showContact} />
       )}
 
       {!showTimeline && (
-        <div
+        <span
           className="timeline-label"
           onClick={() => setShowTimeline(true)}
         >
-          <span className="timeline-icon"></span> TIMELINE
-        </div>
+          TIMELINE
+        </span>
       )}
 
       {!showTimeline && (
@@ -152,7 +142,6 @@ export default function App() {
             }}
           >
             <h2 className="about-heading">Meet Vasant Suraj</h2>
-
             <div className={`about-square ${hasScrolledDown ? 'reveal' : ''}`}>
               <p className="line" style={{ animationDelay: '0.2s' }}>
                 Dear World,

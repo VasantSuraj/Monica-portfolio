@@ -8,7 +8,7 @@
   z-index: 10;
   opacity: 0;
   animation: fadeInSidebar 0.8s ease forwards;
-  animation-delay: 2s;
+  animation-delay: 1s;
 }
 
 @keyframes fadeInSidebar {

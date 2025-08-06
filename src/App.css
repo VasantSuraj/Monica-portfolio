@@ -163,8 +163,45 @@ body, html {
   }
 }
 
-/* ✅ MOBILE RESPONSIVE STYLING */
+/* ✅ TIMELINE LABEL – DESKTOP & MOBILE */
+.timeline-label {
+  position: fixed;
+  top: 75%;
+  right: 0;
+  transform: rotate(-90deg) translateY(-50%);
+  transform-origin: right center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  color: white;
+  background: transparent;
+  padding: 6px 10px;
+  cursor: pointer;
+  z-index: 999;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: opacity 0.3s ease, color 0.3s ease;
+  opacity: 0.6;
+  pointer-events: auto;
+  display: inline-block;
+  max-width: 100px;
+}
+
+.timeline-label:hover {
+  opacity: 1;
+  color: #ffd700;
+}
+
 @media (max-width: 768px) {
+  .timeline-label {
+    top: 30px;
+    right: 20px;
+    transform: rotate(0deg);
+    font-size: 0.85rem;
+    padding: 6px 10px;
+    border-radius: 6px;
+    backdrop-filter: blur(4px);
+  }
+
   .about-heading {
     font-size: 2rem;
     margin-bottom: 14px;
@@ -216,46 +253,5 @@ body, html {
 
   .vasant-signature {
     font-size: 1.5rem;
-  }
-}
-
-/* ✅ TIMELINE LABEL – DESKTOP & MOBILE */
-.timeline-label {
-  position: fixed;
-  top: 75%;
-  right: 0;
-  transform: rotate(-90deg) translateY(-50%);
-  transform-origin: right center;
-  font-family: 'Poppins', sans-serif;
-  font-size: 1rem;
-  color: white;
-  background: transparent;
-  padding: 8px 12px;
-  cursor: pointer;
-  z-index: 999;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  transition: opacity 0.3s ease, color 0.3s ease;
-  opacity: 0.6;
-  pointer-events: auto;
-}
-
-.timeline-label:hover {
-  opacity: 1;
-  color: #ffd700;
-}
-
-@media (max-width: 768px) {
-  .timeline-label {
-    top: auto;
-    top: 30px;
-    right: 20px;
-    transform: rotate(0deg);
-    font-size: 0.85rem;
-    padding: 6px 10px;
-    /* background: rgba(255, 255, 255, 0.05); */
-    border-radius: 6px;
-    /* border: 1px solid rgba(255, 255, 255, 0.1); */
-    backdrop-filter: blur(4px);
   }
 }
