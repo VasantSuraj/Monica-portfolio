@@ -178,7 +178,7 @@ body, html {
     padding: 16px;
     font-size: 0.9rem;
     line-height: 1.6;
-    transform: translateX(-18px); /* ✅ perfect center */
+    transform: translateX(-18px);
   }
 
   .vasant-signature {
@@ -216,5 +216,46 @@ body, html {
 
   .vasant-signature {
     font-size: 1.5rem;
+  }
+}
+
+/* ✅ TIMELINE LABEL – DESKTOP & MOBILE */
+.timeline-label {
+  position: fixed;
+  top: 75%;
+  right: 0;
+  transform: rotate(-90deg) translateY(-50%);
+  transform-origin: right center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  color: white;
+  background: transparent;
+  padding: 8px 12px;
+  cursor: pointer;
+  z-index: 999;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: opacity 0.3s ease, color 0.3s ease;
+  opacity: 0.6;
+  pointer-events: auto;
+}
+
+.timeline-label:hover {
+  opacity: 1;
+  color: #ffd700;
+}
+
+@media (max-width: 768px) {
+  .timeline-label {
+    top: auto;
+    top: 30px;
+    right: 20px;
+    transform: rotate(0deg);
+    font-size: 0.85rem;
+    padding: 6px 10px;
+    /* background: rgba(255, 255, 255, 0.05); */
+    border-radius: 6px;
+    /* border: 1px solid rgba(255, 255, 255, 0.1); */
+    backdrop-filter: blur(4px);
   }
 }

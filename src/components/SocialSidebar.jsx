@@ -7,20 +7,24 @@ import {
 } from 'react-icons/fa';
 import './SocialSidebar.css';
 
-export default function SocialSidebar({ onPhoneClick, zoomLevel, showContact }) {
+export default function SocialSidebar({ onPhoneClick, zoomLevel, showContact, showTimeline }) {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     const isMobile = window.innerWidth <= 768;
 
     if (showContact || zoomLevel >= 4.5) {
-      setVisible(false);
+      setVisible(false); // Always hide when contact or fully zoomed
+    } else if (showTimeline) {
+      setVisible(true); // Show on timeline (both desktop & mobile)
     } else if (isMobile) {
-      setVisible(zoomLevel < 2.5); // Only show in MONIKA section
+      // On mobile: only show in Home before zoomLevel reaches About
+      setVisible(zoomLevel < 2.5);
     } else {
-      setVisible(true); // Always visible on desktop unless ContactPage or Projects
+      // On desktop: always show on Home and About
+      setVisible(true);
     }
-  }, [zoomLevel, showContact]);
+  }, [zoomLevel, showContact, showTimeline]);
 
   return (
     <div className={`social-sidebar ${visible ? 'slide-in' : 'slide-out'}`}>
