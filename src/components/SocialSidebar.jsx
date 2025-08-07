@@ -30,9 +30,9 @@ export default function SocialSidebar({ onPhoneClick, zoomLevel, showContact, sh
     <div className={`social-sidebar ${visible ? 'slide-in' : 'slide-out'}`}>
       <div className="sidebar-line" />
       <div className="social-icons">
-        <a href="#"><FaLinkedin /></a>
-        <a href="#"><FaGithub /></a>
-        <a href="#"><FaInstagram /></a>
+        <a href="https://linkedin.com/in/vasant-suraj-877371253"><FaLinkedin /></a>
+        <a href="https://github.com/VasantSuraj/"><FaGithub /></a>
+        <a href="https://www.instagram.com/vasant_loves_u/"><FaInstagram /></a>
         <a onClick={onPhoneClick}><FaPhone /></a>
       </div>
     </div>
